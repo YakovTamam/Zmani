@@ -33,7 +33,7 @@ const RegisterPage = () => {
   const submitHandler = e => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setMessage("Passwords do not match");
+      setMessage("!הסיסמאות לא תואמות");
       return;
     } else {
       dispatch(register(name, email, password));
@@ -54,16 +54,18 @@ const RegisterPage = () => {
             placeholder='הזן שם'
             value={name}
             style={{ textAlign: "end" }}
+            required
             onChange={e => setName(e.target.value)}></Form.Control>
         </Form.Group>
 
         <Form.Group controlId='email' className='mt-2'>
-          <Form.Label>מספר טלפון</Form.Label>
+          <Form.Label>דואר אלקטרוני</Form.Label>
           <Form.Control
-            type='number'
-            placeholder='הזן מספר טלפון'
+            type='email'
+            placeholder='הזן דוא"ל'
             style={{ textAlign: "end" }}
             value={email}
+            required
             onChange={e => setEmail(e.target.value)}></Form.Control>
         </Form.Group>
 
@@ -74,6 +76,7 @@ const RegisterPage = () => {
             placeholder='זמן סיסמא'
             style={{ textAlign: "end" }}
             value={password}
+            required
             onChange={e => setPassword(e.target.value)}></Form.Control>
         </Form.Group>
 
@@ -84,6 +87,7 @@ const RegisterPage = () => {
             placeholder='הזן סיסמא בשנית'
             value={confirmPassword}
             style={{ textAlign: "end" }}
+            required
             onChange={e => setConfirmPassword(e.target.value)}></Form.Control>
         </Form.Group>
 

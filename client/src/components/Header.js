@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { AiOutlineFieldTime } from "react-icons/ai";
@@ -15,7 +16,7 @@ const Header = () => {
             Zmani
           </Navbar.Brand>
         </LinkContainer>
-        <NavDropdown title='התחבר' id='basic-nav-dropdown'>
+        <NavDropdown title='התחבר' id='basic-nav-dropdown' align='end'>
           <LinkContainer to='/register'>
             <NavDropdown.Item>להרשמה</NavDropdown.Item>
           </LinkContainer>
