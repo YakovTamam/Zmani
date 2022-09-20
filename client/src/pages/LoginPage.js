@@ -100,14 +100,17 @@ const LoginPage = () => {
             : "להתחברות עם מספר טלפון"}
         </Col>
       </Row>
-      <Row className='mt-5'>
-        <Col>
-          משתמש חדש?{" "}
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-            לחץ להרשמה{" "}
-          </Link>
-        </Col>
-      </Row>
+      {connectWithPhone ? (
+        <Row className='mt-5'>
+          <Col>
+            משתמש חדש?{" "}
+            <Link
+              to={redirect ? `/register?redirect=${redirect}` : "/register"}>
+              לחץ להרשמה{" "}
+            </Link>
+          </Col>
+        </Row>
+      ) : null}
     </FormContainer>
   );
 };
