@@ -73,6 +73,14 @@ const LoginPage = () => {
                 value={password}
                 onChange={e => setPassword(e.target.value)}></Form.Control>
             </Form.Group>{" "}
+            <Row className='mt-2'>
+              <Col>
+                שחכת סיסמה?{" "}
+                <Link to={redirect ? `/forgotpassword` : "/forgotpassword"}>
+                  לחץ כאן{" "}
+                </Link>
+              </Col>
+            </Row>
           </>
         )}
 
