@@ -1,3 +1,9 @@
 main{
     min-height: 80vh;
 }
+
+@media screen and (max-width: 600px) {
+    main {
+        min-height: 70vh;
+    }
+  }
