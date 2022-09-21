@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import SupportPage from "./pages/SupportPage";
 import ForgotPassword from "./pages/ForgotPassword";
+import MyPage from "./pages/MyPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path='/login' element={<LoginPage />} />
               <Route path='/support' element={<SupportPage />} />
               <Route path='/forgotpassword' element={<ForgotPassword />} />
+              <Route path='/mypage' element={<MyPage />} />
             </Routes>
           </Container>
         </main>

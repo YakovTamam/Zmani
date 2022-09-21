@@ -61,8 +61,8 @@ const LoginPage = () => {
                 type='email'
                 placeholder='zmani@zmani.com'
                 style={{ textAlign: "end" }}
-                value={password}
-                onChange={e => setPassword(e.target.value)}></Form.Control>
+                value={email}
+                onChange={e => setEmail(e.target.value)}></Form.Control>
             </Form.Group>
             <Form.Group controlId='phone' className='mt-4'>
               <Form.Label>הזן סיסמה</Form.Label>
