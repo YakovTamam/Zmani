@@ -12,11 +12,9 @@ const userSchema = new mongoose.Schema(
     },
     backroundImage: {
       type: String,
-      required: true,
     },
     logoImage: {
       type: String,
-      required: true,
     },
     email: {
       type: String,

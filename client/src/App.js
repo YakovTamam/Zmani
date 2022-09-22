@@ -9,6 +9,7 @@ import RegisterPage from "./pages/RegisterPage";
 import SupportPage from "./pages/SupportPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import MyPage from "./pages/MyPage";
+import BusinessSetting from "./pages/BusinessSetting";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path='/support' element={<SupportPage />} />
               <Route path='/forgotpassword' element={<ForgotPassword />} />
               <Route path='/mypage' element={<MyPage />} />
+              <Route path='/business-setting' element={<BusinessSetting />} />
             </Routes>
           </Container>
         </main>
