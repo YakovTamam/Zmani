@@ -44,7 +44,18 @@ const MyPage = () => {
               position: "absolute",
             }}
           />
-          <Button id='mark-appointment-button'>הזמן תור</Button>
+          <Button
+            id='mark-appointment-button'
+            style={{
+              position: "fixed",
+              bottom: "0",
+              width: "100%",
+              height: "65px",
+              borderRadius: "0",
+              fontWeight: "bold",
+            }}>
+            הזמן תור
+          </Button>
         </div>
       </div>
       <h2

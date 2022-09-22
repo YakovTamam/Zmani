@@ -1,3 +1,29 @@
-h1, h2{
+h1, h2, h3, h5{
     text-align: right;
+}
+
+h5{
+    width: 130px;
+    margin-right: 10px;
+}
+
+
+
+.opening-time-container{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+
+.opening-title{
+    display: flex;
+    align-items: end;
+    width: 100%;
+
+}
+
+.day-container{
+
 }

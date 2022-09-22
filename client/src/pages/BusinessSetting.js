@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import TimePicker from "../components/TimePicker";
 import "./BusinessSetting.css";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import Table from "react-bootstrap/Table";
+import Form from "react-bootstrap/Form";
 
 function BusinessSetting() {
   const [hour, setHour] = useState("8");
@@ -14,57 +17,115 @@ function BusinessSetting() {
     setMinute(e.target.value);
   };
 
-  const day = [
-    {
-      name: "ראשון",
-      opening: "8:00",
-      closing: "17:00",
-      isOpen: true,
-    },
-    {
-      name: "שני",
-      opening: "8:00",
-      closing: "17:00",
-      isOpen: true,
-    },
-    {
-      name: "שלישי",
-      opening: "8:00",
-      closing: "17:00",
-      isOpen: true,
-    },
-    {
-      name: "רביעי",
-      opening: "8:00",
-      closing: "17:00",
-      isOpen: true,
-    },
-    {
-      name: "חמישי",
-      opening: "8:00",
-      closing: "17:00",
-      isOpen: true,
-    },
-    {
-      name: "שישי",
-      opening: "8:00",
-      closing: "13:00",
-      isOpen: true,
-    },
-    {
-      name: "שבת",
-      opening: "8:00",
-      closing: "17:00",
-      isOpen: false,
-    },
-  ];
+  const handleCheck = e => {
+    console.log(e.target.value);
+  };
 
   return (
     <div>
       <h1>הגדרת עסק</h1>
-      <h2>שעות פתיחה</h2>
-      <TimePicker hour={hour} handleHour={handleHour} />
-      <TimePicker hour={hour} handleHour={handleHour} pickTime={false} />
+      <h3>שעות פתיחה</h3>
+      <Table striped>
+        <thead>
+          <tr>
+            <th>סגירה</th>
+            <th>פתיחה</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <Form.Check
+                type='switch'
+                id='custom-switch'
+                onChange={handleCheck}
+                checked={true}
+              />
+            </td>
+            <td>ראשון</td>
+          </tr>
+          <tr>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <Form.Check type='switch' id='custom-switch' checked={true} />
+            </td>
+            <td>שני</td>
+          </tr>
+          <tr>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <Form.Check type='switch' id='custom-switch' checked={true} />
+            </td>
+            <td>שלישי</td>
+          </tr>
+          <tr>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <Form.Check type='switch' id='custom-switch' checked={true} />
+            </td>
+            <td>רביעי</td>
+          </tr>
+          <tr>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <Form.Check type='switch' id='custom-switch' checked={true} />
+            </td>
+            <td>חמישי</td>
+          </tr>
+          <tr>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <Form.Check type='switch' id='custom-switch' checked={true} />
+            </td>
+            <td>שישי</td>
+          </tr>
+          <tr>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <TimePicker />
+            </td>
+            <td>
+              <Form.Check type='switch' id='custom-switch' checked={false} />
+            </td>
+            <td>שבת</td>
+          </tr>
+        </tbody>
+      </Table>
     </div>
   );
 }
