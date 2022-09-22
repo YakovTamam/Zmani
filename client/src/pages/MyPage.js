@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import "./MyPage.css";
 
 const MyPage = () => {
   return (
-    <>
+    <div>
       <div
         style={{
           position: "relative",
@@ -43,42 +44,49 @@ const MyPage = () => {
               position: "absolute",
             }}
           />
-          <Button
-            style={{
-              position: "fixed",
-              bottom: "0",
-              width: "100%",
-              height: "65px",
-            }}>
-            הזמן תור
-          </Button>
+          <Button id='mark-appointment-button'>הזמן תור</Button>
         </div>
       </div>
-      <div
-        className='opening-houres'
+      <h2
         style={{
-          backgroundColor: "lightgray",
-          height: "300px",
+          textAlign: "center",
           marginTop: "55px",
-          borderRadius: "10%",
         }}>
+        GENTELMEN
+      </h2>
+      <div
+        style={{
+          textAlign: "center",
+        }}>
+        !המספרה הכי טובה בעיר
+      </div>
+      <div className='opening-houres'>
         <h4
           style={{
             textAlign: "center",
             borderBottom: "1px solid black",
-            margin: "auto",
+            fontWeight: "bold",
           }}>
           שעות פתיחה
         </h4>
       </div>
       <div
-        className='opening-houres'
+        className='reviews'
         style={{
           backgroundColor: "lightgray",
-          height: "120px",
+          height: "150px",
           marginTop: "15px",
-        }}></div>
-    </>
+        }}>
+        <h5
+          style={{
+            textAlign: "right",
+            fontWeight: "bold",
+            margin: "10px",
+          }}>
+          ביקורות
+        </h5>
+      </div>
+    </div>
   );
 };
 

@@ -1,6 +1,5 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { AiOutlineFieldTime } from "react-icons/ai";
@@ -28,7 +27,10 @@ const Header = () => {
           </Navbar.Brand>
         </LinkContainer>
         {userInfo ? (
-          <NavDropdown title='התחבר' id='basic-nav-dropdown' align='end'>
+          <NavDropdown
+            title={userInfo.name}
+            id='basic-nav-dropdown'
+            align='end'>
             <LinkContainer to='/mypage'>
               <NavDropdown.Item>העמוד שלי</NavDropdown.Item>
             </LinkContainer>

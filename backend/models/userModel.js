@@ -7,6 +7,17 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    businessName: {
+      type: String,
+    },
+    backroundImage: {
+      type: String,
+      required: true,
+    },
+    logoImage: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
