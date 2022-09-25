@@ -1,3 +1,5 @@
 select {
     border-radius: 10px;
+    width: 30px;
+    appearance: none;
   }
