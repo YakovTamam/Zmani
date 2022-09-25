@@ -1,4 +1,4 @@
-const day = [
+const days = [
   {
     name: "ראשון",
     opening: "8:00",
@@ -42,3 +42,5 @@ const day = [
     isOpen: false,
   },
 ];
+
+export { days };

@@ -7,15 +7,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    businessName: {
-      type: String,
-    },
-    backroundImage: {
-      type: String,
-    },
-    logoImage: {
-      type: String,
-    },
+
     email: {
       type: String,
       required: true,
@@ -25,10 +17,19 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    isAdmin: {
+    isBussines: {
       type: Boolean,
       required: true,
       default: false,
+    },
+    businessName: {
+      type: String,
+    },
+    backroundImage: {
+      type: String,
+    },
+    logoImage: {
+      type: String,
     },
   },
   { timestamps: true }
