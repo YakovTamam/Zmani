@@ -5,40 +5,24 @@ import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch } from "react-redux";
 import { days } from "./db";
+import { getBusiness } from "../actions/userActions";
+import { Button } from "react-bootstrap";
 
-function BusinessSetting() {
+function BusinessSetting2() {
   const dispatch = useDispatch();
 
-  const business = useSelector(state => state.business);
-  const { business: userBusiness } = business;
-
-  const userLogin = useSelector(state => state.userLogin);
-  const { userInfo } = userLogin;
-
   const handleChange = e => {
-    days[0].closing = e.target.value;
+    console.log(e.target.value);
   };
 
-  const [check, setCheck] = useState(true);
-
-  const workingDays = userInfo.business.workingDays;
-
-  const [sunday, setSunday] = useState(userInfo.business.workingDays.sunday);
-  const [monday, setMonday] = useState(userInfo.business.workingDays.monday);
-
-  function handleTimeChange(val) {
-    setSunday({ ...sunday, opening: val });
-  }
-
-  const con = e => {
-    console.log(sunday, monday);
+  const handleTimeChange = e => {
+    console.log(e.target.value);
   };
 
   return (
     <div>
       <h1>הגדרת עסק</h1>
       <h3>שעות פתיחה</h3>
-      <button onClick={con}>g</button>
       <Table striped>
         <thead>
           <tr>
@@ -48,50 +32,41 @@ function BusinessSetting() {
             <th>יום</th>
           </tr>
         </thead>
-        <tbody>
-          <tr key={sunday.name}>
+        {/* <tbody>
+          {days.map(day => (<tr key={day.name}></tr>)}
+          <tr key={workingDays.sunday.name}>
             <td>
               <TimePicker
-                value={sunday.closing}
-                handleTimeChange={handleTimeChange}
+                value={workingDays.sunday.closing}
+                onChange={handleTimeChange}
               />
             </td>
             <td>
-              <TimePicker
-                value={sunday.opening}
-                handleTimeChange={handleTimeChange}
-                onChange={e =>
-                  setSunday({ ...sunday, opening: e.target.value })
-                }
-              />
+              <TimePicker value={workingDays.sunday.opening} />
             </td>
             <td>
               <Form.Check
                 type='switch'
-                id='sunday'
-                checked={sunday.isOpen}
-                onChange={e =>
-                  setSunday({ ...sunday, isOpen: e.target.checked })
-                }
+                id='custom-switch'
+                value={workingDays.sunday.isOpen}
+                onChange={handleChange}
               />
             </td>
-            <td>{sunday.name}</td>
+            <td>{workingDays.sunday.name}</td>
           </tr>
-          <tr key={monday.name}>
+          <tr key={workingDays.monday.name}>
             <td>
-              <TimePicker value={monday.closing} />
+              <TimePicker value={workingDays.monday.closing} />
             </td>
             <td>
-              <TimePicker value={monday.opening} />
+              <TimePicker value={workingDays.monday.opening} />
             </td>
             <td>
               <Form.Check
                 type='switch'
-                id='monday'
-                checked={monday.isOpen}
-                onChange={e =>
-                  setMonday({ ...monday, isOpen: e.target.checked })
-                }
+                id='custom-switch'
+                value={workingDays.monday.isOpen}
+                onChange={handleChange}
               />
             </td>
             <td>{workingDays.monday.name}</td>
@@ -106,8 +81,8 @@ function BusinessSetting() {
             <td>
               <Form.Check
                 type='switch'
-                id='tuesday'
-                checked={workingDays.tuesday.isOpen}
+                id='custom-switch'
+                value={workingDays.tuesday.isOpen}
                 onChange={handleChange}
               />
             </td>
@@ -123,8 +98,8 @@ function BusinessSetting() {
             <td>
               <Form.Check
                 type='switch'
-                id='wednesday'
-                checked={workingDays.wednesday.isOpen}
+                id='custom-switch'
+                value={workingDays.wednesday.isOpen}
                 onChange={handleChange}
               />
             </td>
@@ -141,7 +116,7 @@ function BusinessSetting() {
               <Form.Check
                 type='switch'
                 id='custom-switch'
-                checked={workingDays.thursday.isOpen}
+                value={workingDays.thursday.isOpen}
                 onChange={handleChange}
               />
             </td>
@@ -158,7 +133,7 @@ function BusinessSetting() {
               <Form.Check
                 type='switch'
                 id='custom-switch'
-                checked={workingDays.friday.isOpen}
+                defaultValue={workingDays.friday.isOpen}
                 onChange={handleChange}
               />
             </td>
@@ -175,15 +150,15 @@ function BusinessSetting() {
               <Form.Check
                 type='switch'
                 id='custom-switch'
-                checked={workingDays.saturday.isOpen}
+                value={workingDays.saturday.isOpen}
                 onChange={handleChange}
               />
             </td>
             <td>{workingDays.saturday.name}</td>
           </tr>
-        </tbody>
+        </tbody> */}
       </Table>
     </div>
   );
 }
-export default BusinessSetting;
+export default BusinessSetting2;

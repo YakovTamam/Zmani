@@ -10,6 +10,7 @@ import SupportPage from "./pages/SupportPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import MyPage from "./pages/MyPage";
 import BusinessSetting from "./pages/BusinessSetting";
+import BusinessSetting2 from "./pages/BusinessSetting2";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path='/forgotpassword' element={<ForgotPassword />} />
               <Route path='/mypage' element={<MyPage />} />
               <Route path='/business-setting' element={<BusinessSetting />} />
+              <Route path='/business-setting2' element={<BusinessSetting2 />} />
             </Routes>
           </Container>
         </main>

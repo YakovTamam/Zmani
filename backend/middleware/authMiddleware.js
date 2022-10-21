@@ -35,4 +35,12 @@ const admin = (req, res, next) => {
     res.status(401).json({ msg: "Not authorized as an admin" });
   }
 };
-export { protect, admin };
+
+const business = (req, res, next) => {
+  if (req.user && req.user.isBussines) {
+    next();
+  } else {
+    res.status(401).json({ msg: "Not authorized as an bussines" });
+  }
+};
+export { protect, admin, business };

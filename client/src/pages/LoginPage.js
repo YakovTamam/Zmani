@@ -91,13 +91,14 @@ const LoginPage = () => {
       <Row className='mt-5'>
         <Col>
           <Button
-            variant='link'
+            variant='outline-primary'
+            size='sm'
             onClick={e => ChangeConnectHandler(e.target.value)}>
             לחץ
           </Button>
           {connectWithPhone
-            ? "להתחברות עם דואל וסיסמה"
-            : "להתחברות עם מספר טלפון"}
+            ? " להתחברות עם דואל וסיסמה"
+            : " להתחברות עם מספר טלפון"}
         </Col>
       </Row>
       {connectWithPhone ? (

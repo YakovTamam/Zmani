@@ -37,7 +37,9 @@ const Header = () => {
             <LinkContainer to='/business-setting'>
               <NavDropdown.Item>הגדרת עסק</NavDropdown.Item>
             </LinkContainer>
-            <NavDropdown.Item onClick={logoutHandler}>התנתק</NavDropdown.Item>
+            <LinkContainer to='/login'>
+              <NavDropdown.Item onClick={logoutHandler}>התנתק</NavDropdown.Item>
+            </LinkContainer>
             <NavDropdown.Divider />
             <LinkContainer to='/support'>
               <NavDropdown.Item>תמיכה / צור קשר</NavDropdown.Item>

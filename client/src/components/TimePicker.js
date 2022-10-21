@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import "./TimePicker.css";
 
 const TimePicker = props => {
-  const [value, setValue] = useState(props.time);
+  const [value, setValue] = useState(props.value);
 
-  const onChangeHandler = e => {
+  const onChangeTime = e => {
     setValue(e.target.value);
+    props.obj = e.target.value;
   };
 
   return (
     <div>
-      <select value={value} onChange={onChangeHandler}>
+      <select value={value} onChange={onChangeTime}>
         <option value='1:00'>1:00</option>
         <option value='1:30'>1:30</option>
         <option value='2:00'>2:00</option>
@@ -57,6 +58,7 @@ const TimePicker = props => {
         <option value='22:30'>22:30</option>
         <option value='23:00'>23:00</option>
         <option value='23:30'>23:30</option>
+        <option value='00:00'>00:00</option>
         <option value='00:30'>00:30</option>
       </select>
     </div>

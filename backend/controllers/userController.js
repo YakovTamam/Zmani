@@ -16,7 +16,9 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isBusiness: user.isBusiness,
       token: generateToken(user._id),
+      business: user.business,
     });
   } else {
     res.status(401);
@@ -45,6 +47,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isBusiness: user.isBusiness,
       token: generateToken(user._id),
     });
   } else {
@@ -65,6 +68,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isBusiness: user.isBusiness,
     });
   } else {
     res.status(401);
@@ -164,6 +168,20 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc Get user business by id
+// @route Get /api/users/:id/business
+// @access Private/Admin
+const getUserBusinessById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password");
+
+  if (user) {
+    res.json({ workingDay: user.business.workingDays });
+  } else {
+    res.status(404);
+    throw Error("User not found");
+  }
+});
+
 export {
   authUser,
   getUserProfile,
@@ -173,4 +191,5 @@ export {
   deleteUser,
   getUserById,
   updateUser,
+  getUserBusinessById,
 };
