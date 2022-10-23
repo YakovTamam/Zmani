@@ -5,6 +5,10 @@ import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch } from "react-redux";
 import { days } from "./db";
+import {
+  getBusinessWorkingDays,
+  updateBusinessWorkingDays,
+} from "../actions/businessAction";
 
 function BusinessSetting() {
   const dispatch = useDispatch();
@@ -25,20 +29,84 @@ function BusinessSetting() {
 
   const [sunday, setSunday] = useState(userInfo.business.workingDays.sunday);
   const [monday, setMonday] = useState(userInfo.business.workingDays.monday);
+  const [tuesday, setTuesday] = useState(userInfo.business.workingDays.tuesday);
+  const [thursday, setThursday] = useState(
+    userInfo.business.workingDays.thursday
+  );
+  const [wednesday, setWednesday] = useState(
+    userInfo.business.workingDays.wednesday
+  );
+  const [friday, setFriday] = useState(userInfo.business.workingDays.friday);
+  const [saturday, setSaturday] = useState(
+    userInfo.business.workingDays.saturday
+  );
 
-  function handleTimeChange(val) {
+  function handleSundayOpen(val) {
     setSunday({ ...sunday, opening: val });
+  }
+  function handleSundayClose(val) {
+    setSunday({ ...sunday, closing: val });
+  }
+  function handleMondayOpen(val) {
+    setMonday({ ...monday, opening: val });
+  }
+  function handleMondayClose(val) {
+    setMonday({ ...monday, closing: val });
+  }
+  function handleTuesdayOpen(val) {
+    setTuesday({ ...tuesday, opening: val });
+  }
+  function handleTuesdayClose(val) {
+    setTuesday({ ...tuesday, closing: val });
+  }
+  function handleWednesdayOpen(val) {
+    setWednesday({ ...wednesday, opening: val });
+  }
+  function handleWednesdayClose(val) {
+    setWednesday({ ...wednesday, closing: val });
+  }
+  function handleThursdayOpen(val) {
+    setThursday({ ...thursday, opening: val });
+  }
+  function handleThursdayClose(val) {
+    setThursday({ ...thursday, closing: val });
+  }
+  function handleFridayOpen(val) {
+    setFriday({ ...friday, opening: val });
+  }
+  function handleFridayClose(val) {
+    setFriday({ ...friday, closing: val });
+  }
+  function handleSaturdayOpen(val) {
+    setSaturday({ ...saturday, opening: val });
+  }
+  function handleSaturdayClose(val) {
+    setSaturday({ ...saturday, closing: val });
   }
 
   const con = e => {
-    console.log(sunday, monday);
+    dispatch(getBusinessWorkingDays());
+    dispatch(
+      updateBusinessWorkingDays({
+        sunday,
+        monday,
+        tuesday,
+        wednesday,
+        thursday,
+        friday,
+        saturday,
+      })
+    );
   };
+
+  // useEffect(() => {
+  //   if()
+  // })
 
   return (
     <div>
       <h1>הגדרת עסק</h1>
       <h3>שעות פתיחה</h3>
-      <button onClick={con}>g</button>
       <Table striped>
         <thead>
           <tr>
@@ -52,17 +120,14 @@ function BusinessSetting() {
           <tr key={sunday.name}>
             <td>
               <TimePicker
-                value={sunday.closing}
-                handleTimeChange={handleTimeChange}
+                time={sunday.closing}
+                handleTimeChange={handleSundayClose}
               />
             </td>
             <td>
               <TimePicker
-                value={sunday.opening}
-                handleTimeChange={handleTimeChange}
-                onChange={e =>
-                  setSunday({ ...sunday, opening: e.target.value })
-                }
+                time={sunday.opening}
+                handleTimeChange={handleSundayOpen}
               />
             </td>
             <td>
@@ -79,10 +144,16 @@ function BusinessSetting() {
           </tr>
           <tr key={monday.name}>
             <td>
-              <TimePicker value={monday.closing} />
+              <TimePicker
+                time={monday.closing}
+                handleTimeChange={handleMondayClose}
+              />
             </td>
             <td>
-              <TimePicker value={monday.opening} />
+              <TimePicker
+                time={monday.opening}
+                handleTimeChange={handleMondayOpen}
+              />
             </td>
             <td>
               <Form.Check
@@ -94,95 +165,136 @@ function BusinessSetting() {
                 }
               />
             </td>
-            <td>{workingDays.monday.name}</td>
+            <td>{monday.name}</td>
           </tr>
-          <tr key={workingDays.tuesday.name}>
+          <tr key={tuesday.name}>
             <td>
-              <TimePicker value={workingDays.tuesday.closing} />
+              <TimePicker
+                time={tuesday.closing}
+                handleTimeChange={handleTuesdayClose}
+              />
             </td>
             <td>
-              <TimePicker value={workingDays.tuesday.opening} />
+              <TimePicker
+                time={tuesday.opening}
+                handleTimeChange={handleTuesdayOpen}
+              />
             </td>
             <td>
               <Form.Check
                 type='switch'
                 id='tuesday'
-                checked={workingDays.tuesday.isOpen}
-                onChange={handleChange}
+                checked={tuesday.isOpen}
+                onChange={e =>
+                  setTuesday({ ...tuesday, isOpen: e.target.checked })
+                }
               />
             </td>
-            <td>{workingDays.tuesday.name}</td>
+            <td>{tuesday.name}</td>
           </tr>
-          <tr key={workingDays.wednesday.name}>
+          <tr key={wednesday.name}>
             <td>
-              <TimePicker value={workingDays.wednesday.closing} />
+              <TimePicker
+                time={wednesday.closing}
+                handleTimeChange={handleWednesdayClose}
+              />
             </td>
             <td>
-              <TimePicker value={workingDays.wednesday.opening} />
+              <TimePicker
+                time={wednesday.opening}
+                handleTimeChange={handleWednesdayOpen}
+              />
             </td>
             <td>
               <Form.Check
                 type='switch'
                 id='wednesday'
-                checked={workingDays.wednesday.isOpen}
-                onChange={handleChange}
+                checked={wednesday.isOpen}
+                onChange={e =>
+                  setWednesday({ ...wednesday, isOpen: e.target.checked })
+                }
               />
             </td>
-            <td>{workingDays.wednesday.name}</td>
+            <td>{wednesday.name}</td>
           </tr>
-          <tr key={workingDays.thursday.name}>
+          <tr key={thursday.name}>
             <td>
-              <TimePicker value={workingDays.thursday.closing} />
+              <TimePicker
+                time={thursday.closing}
+                handleTimeChange={handleThursdayOpen}
+              />
             </td>
             <td>
-              <TimePicker value={workingDays.thursday.opening} />
+              <TimePicker
+                time={thursday.opening}
+                handleTimeChange={handleThursdayClose}
+              />
+            </td>
+            <td>
+              <Form.Check
+                type='switch'
+                id='thursday'
+                checked={thursday.isOpen}
+                onChange={e =>
+                  setThursday({ ...thursday, isOpen: e.target.checked })
+                }
+              />
+            </td>
+            <td>{thursday.name}</td>
+          </tr>
+          <tr key={friday.name}>
+            <td>
+              <TimePicker
+                time={friday.closing}
+                handleTimeChange={handleFridayClose}
+              />
+            </td>
+            <td>
+              <TimePicker
+                time={friday.opening}
+                handleTimeChange={handleFridayOpen}
+              />
             </td>
             <td>
               <Form.Check
                 type='switch'
                 id='custom-switch'
-                checked={workingDays.thursday.isOpen}
-                onChange={handleChange}
+                checked={friday.isOpen}
+                onChange={e =>
+                  setFriday({ ...friday, isOpen: e.target.checked })
+                }
               />
             </td>
-            <td>{workingDays.thursday.name}</td>
+            <td>{friday.name}</td>
           </tr>
-          <tr key={workingDays.friday.name}>
+          <tr key={saturday.name}>
             <td>
-              <TimePicker value={workingDays.friday.closing} />
+              <TimePicker
+                time={saturday.closing}
+                handleTimeChange={handleSaturdayClose}
+              />
             </td>
             <td>
-              <TimePicker value={workingDays.friday.opening} />
+              <TimePicker
+                time={saturday.opening}
+                handleTimeChange={handleSaturdayOpen}
+              />
             </td>
             <td>
               <Form.Check
                 type='switch'
-                id='custom-switch'
-                checked={workingDays.friday.isOpen}
-                onChange={handleChange}
+                id='saturday'
+                checked={saturday.isOpen}
+                onChange={e =>
+                  setSaturday({ ...saturday, isOpen: e.target.checked })
+                }
               />
             </td>
-            <td>{workingDays.friday.name}</td>
-          </tr>
-          <tr key={workingDays.saturday.name}>
-            <td>
-              <TimePicker value={workingDays.saturday.closing} />
-            </td>
-            <td>
-              <TimePicker value={workingDays.saturday.opening} />
-            </td>
-            <td>
-              <Form.Check
-                type='switch'
-                id='custom-switch'
-                checked={workingDays.saturday.isOpen}
-                onChange={handleChange}
-              />
-            </td>
-            <td>{workingDays.saturday.name}</td>
+            <td>{saturday.name}</td>
           </tr>
         </tbody>
       </Table>
+      <button onClick={con}>עדכן</button>
     </div>
   );
 }

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./TimePicker.css";
 
 const TimePicker = props => {
-  const [value, setValue] = useState(props.value);
+  const [value, setValue] = useState(props.time);
 
   const onChangeTime = e => {
     setValue(e.target.value);
-    props.obj = e.target.value;
+    props.handleTimeChange(e.target.value);
   };
 
   return (
