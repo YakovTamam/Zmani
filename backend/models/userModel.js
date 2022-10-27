@@ -33,17 +33,17 @@ const userSchema = new mongoose.Schema(
       businessName: {
         type: String,
         required: true,
-        default: "zmani",
+        default: "zmani businessName",
       },
-      backroundImage: {
+      backgroundImage: {
         type: String,
         required: true,
-        default: "zmani",
+        default: "zmani backgroundImage",
       },
       logoImage: {
         type: String,
         required: true,
-        default: "zmani",
+        default: "zmani logoImage",
       },
       slogan: {
         type: String,

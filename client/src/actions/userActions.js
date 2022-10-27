@@ -1,5 +1,8 @@
 import axios from "axios";
-import { GET_BUSINESS_WORKING_DAYS_RESET } from "../constants/businessConstant";
+import {
+  GET_BUSINESS_WORKING_DAYS_RESET,
+  GET_BUSINESS_WORKING_DAYS_SUCCESS,
+} from "../constants/businessConstant";
 import { CART_RESET } from "../constants/cartConstants";
 import { ORDER_LIST_MY_RESET } from "../constants/orderConstants";
 import {
@@ -45,8 +48,12 @@ export const login = (email, password) => async dispatch => {
     );
 
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+    dispatch({
+      type: GET_BUSINESS_WORKING_DAYS_SUCCESS,
+      payload: data.business,
+    });
     localStorage.setItem("userInfo", JSON.stringify(data));
-    localStorage.setItem("business", JSON.stringify(data.business.workingDays));
+    localStorage.setItem("business", JSON.stringify(data.business));
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,

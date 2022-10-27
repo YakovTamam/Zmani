@@ -13,7 +13,14 @@ export const businessReducer = (state = {}, action) => {
     case GET_BUSINESS_WORKING_DAYS_REQUEST:
       return { loading: true };
     case GET_BUSINESS_WORKING_DAYS_SUCCESS:
-      return { loading: false, success: true, workingDays: action.payload };
+      return {
+        loading: false,
+        workingDays: action.payload.workingDays,
+        businessName: action.payload.businessName,
+        slogan: action.payload.slogan,
+        logoImage: action.payload.logoImage,
+        backgroundImage: action.payload.backgroundImage,
+      };
     case UPDATE_BUSINESS_WORKING_DAYS_SUCCESS:
       return { loading: false, success: true, workingDays: action.payload };
     case GET_BUSINESS_WORKING_DAYS_FAIL:
@@ -30,7 +37,12 @@ export const workingDaysReducer = (state = {}, action) => {
     case UPDATE_BUSINESS_WORKING_DAYS_REQUEST:
       return { loading: true };
     case UPDATE_BUSINESS_WORKING_DAYS_SUCCESS:
-      return { loading: false, success: true, workingDays: action.payload };
+      return {
+        loading: false,
+        success: true,
+        workingDays: action.payload.workingDays,
+        businessName: action.payload.businessName,
+      };
     case UPDATE_BUSINESS_WORKING_DAYS_FAIL:
       return { loading: false, error: action.payload };
     default:
