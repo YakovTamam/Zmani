@@ -23,8 +23,6 @@ export const getBusinessWorkingDays = () => async (dispatch, getState) => {
       },
     };
 
-    console.log(userInfo);
-
     const { data } = await axios.get(`/api/business/${userInfo._id}/`, config);
 
     dispatch({ type: GET_BUSINESS_WORKING_DAYS_SUCCESS, payload: data });
@@ -54,11 +52,15 @@ export const updateBusinessWorkingDays =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      console.log(workingDays);
 
-      await axios.put(`/api/business/${userInfo._id}`, workingDays, config);
+      const { data } = await axios.put(
+        `/api/business/${userInfo._id}`,
+        workingDays,
+        config
+      );
 
-      dispatch({ type: UPDATE_BUSINESS_WORKING_DAYS_SUCCESS });
+      dispatch({ type: UPDATE_BUSINESS_WORKING_DAYS_SUCCESS, payload: data });
+      localStorage.setItem("business", JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: UPDATE_BUSINESS_WORKING_DAYS_FAIL,

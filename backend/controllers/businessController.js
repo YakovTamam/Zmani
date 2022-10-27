@@ -9,7 +9,7 @@ const getUserBusinessById = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select("-password");
 
   if (user) {
-    res.json({ workingDay: user.business.workingDays });
+    res.json(user.business.workingDays);
   } else {
     res.status(404);
     throw Error("User not found");

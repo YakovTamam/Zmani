@@ -4,7 +4,6 @@ import "./BusinessSetting.css";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch } from "react-redux";
-import { days } from "./db";
 import {
   getBusinessWorkingDays,
   updateBusinessWorkingDays,
@@ -13,33 +12,19 @@ import {
 function BusinessSetting() {
   const dispatch = useDispatch();
 
-  const business = useSelector(state => state.business);
-  const { business: userBusiness } = business;
-
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
 
-  const handleChange = e => {
-    days[0].closing = e.target.value;
-  };
+  const business = useSelector(state => state.business);
+  const { workingDays } = business;
 
-  const [check, setCheck] = useState(true);
-
-  const workingDays = userInfo.business.workingDays;
-
-  const [sunday, setSunday] = useState(userInfo.business.workingDays.sunday);
-  const [monday, setMonday] = useState(userInfo.business.workingDays.monday);
-  const [tuesday, setTuesday] = useState(userInfo.business.workingDays.tuesday);
-  const [thursday, setThursday] = useState(
-    userInfo.business.workingDays.thursday
-  );
-  const [wednesday, setWednesday] = useState(
-    userInfo.business.workingDays.wednesday
-  );
-  const [friday, setFriday] = useState(userInfo.business.workingDays.friday);
-  const [saturday, setSaturday] = useState(
-    userInfo.business.workingDays.saturday
-  );
+  const [sunday, setSunday] = useState(workingDays.sunday);
+  const [monday, setMonday] = useState(workingDays.monday);
+  const [tuesday, setTuesday] = useState(workingDays.tuesday);
+  const [thursday, setThursday] = useState(workingDays.thursday);
+  const [wednesday, setWednesday] = useState(workingDays.wednesday);
+  const [friday, setFriday] = useState(workingDays.friday);
+  const [saturday, setSaturday] = useState(workingDays.saturday);
 
   function handleSundayOpen(val) {
     setSunday({ ...sunday, opening: val });
@@ -85,7 +70,6 @@ function BusinessSetting() {
   }
 
   const con = e => {
-    dispatch(getBusinessWorkingDays());
     dispatch(
       updateBusinessWorkingDays({
         sunday,
@@ -97,11 +81,14 @@ function BusinessSetting() {
         saturday,
       })
     );
+    console.log(workingDays);
   };
 
-  // useEffect(() => {
-  //   if()
-  // })
+  useEffect(() => {
+    if (!workingDays) {
+      dispatch(getBusinessWorkingDays());
+    }
+  }, [dispatch, workingDays]);
 
   return (
     <div>

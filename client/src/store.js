@@ -2,7 +2,10 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { userRegisterReducer, userLoginReducer } from "./reducers/userReducers";
-import { businessReducer } from "./reducers/businessReducer";
+import {
+  businessReducer,
+  workingDaysReducer,
+} from "./reducers/businessReducer";
 
 const reducer = combineReducers({
   userRegister: userRegisterReducer,
@@ -20,6 +23,7 @@ const BusinessFromStorage = localStorage.getItem("business")
 
 const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
+  business: { workingDays: BusinessFromStorage },
 };
 
 const middleware = [thunk];
