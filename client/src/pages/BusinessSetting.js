@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TimePicker from "../components/TimePicker";
 import "./BusinessSetting.css";
-import { Table, Form, Card } from "react-bootstrap";
+import { Table, Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getBusinessWorkingDays,
@@ -17,6 +17,8 @@ function BusinessSetting() {
   const business = useSelector(state => state.business);
   const { workingDays } = business;
 
+  const [businessName, setBusinessName] = useState("zmani");
+  const [businessSlogan, setBusinessSlogan] = useState("save zmani");
   const [sunday, setSunday] = useState(workingDays.sunday);
   const [monday, setMonday] = useState(workingDays.monday);
   const [tuesday, setTuesday] = useState(workingDays.tuesday);
@@ -92,18 +94,16 @@ function BusinessSetting() {
   return (
     <div>
       <h1>הגדרת העסק</h1>
-      <Card>
-        <h4>שם העסק</h4>
-        <h4>שם העסק</h4>
-        <h4>שם העסק</h4>
-        <h4>שם העסק</h4>
-        <h4>שם העסק</h4>
-        <h4>שם העסק</h4>
-        <h4>שם העסק</h4>
-        <h4>שם העסק</h4>
-        <h4>העלאת לוגו</h4>
-        <h4>העלאת תמונת רקע</h4>
-      </Card>
+      <div className='card'>
+        <h6>שם העסק</h6>
+        <input type='text' placeholder={businessName}></input>
+        <h6>סלוגן</h6>
+        <input type='text' placeholder={businessSlogan}></input>
+        <h6>העלאת לוגו</h6>
+        <Button className='btn btn-sm'>לחץ</Button>
+        <h6>העלאת תמונת רקע</h6>
+        <Button className='btn btn-sm'>לחץ</Button>
+      </div>
       <h3>שעות פתיחה</h3>
       <Table striped>
         <thead>

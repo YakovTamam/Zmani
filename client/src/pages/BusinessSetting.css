@@ -7,6 +7,23 @@ h5{
     margin-right: 10px;
 }
 
+h6{
+    margin-top: 20px;
+}
+
+input{
+    direction: rtl;
+    width: 80%;
+}
+
+.card{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 10px;
+    height: 400px;
+}
+
 
 
 .opening-time-container{

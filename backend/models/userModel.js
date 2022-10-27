@@ -45,6 +45,11 @@ const userSchema = new mongoose.Schema(
         required: true,
         default: "zmani",
       },
+      slogan: {
+        type: String,
+        required: true,
+        default: "save zmani",
+      },
       workingDays: {
         sunday: {
           name: { type: String, default: "ראשון" },
