@@ -96,11 +96,19 @@ function BusinessSetting() {
       <h1>הגדרת העסק</h1>
       <div className='card'>
         <h6>שם העסק</h6>
-        <input type='text' placeholder={businessName}></input>
+        <input
+          type='text'
+          placeholder={businessName}
+          style={{ marginBottom: "20px" }}></input>
         <h6>סלוגן</h6>
-        <input type='text' placeholder={businessSlogan}></input>
+        <input
+          type='text'
+          placeholder={businessSlogan}
+          style={{ marginBottom: "20px" }}></input>
         <h6>העלאת לוגו</h6>
-        <Button className='btn btn-sm'>לחץ</Button>
+        <Button className='btn btn-sm' style={{ marginBottom: "20px" }}>
+          לחץ
+        </Button>
         <h6>העלאת תמונת רקע</h6>
         <Button className='btn btn-sm'>לחץ</Button>
       </div>
