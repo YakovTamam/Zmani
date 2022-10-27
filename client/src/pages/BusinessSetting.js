@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TimePicker from "../components/TimePicker";
 import "./BusinessSetting.css";
-import Table from "react-bootstrap/Table";
-import Form from "react-bootstrap/Form";
+import { Table, Form, Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getBusinessWorkingDays,
@@ -92,7 +91,19 @@ function BusinessSetting() {
 
   return (
     <div>
-      <h1>הגדרת עסק</h1>
+      <h1>הגדרת העסק</h1>
+      <Card>
+        <h4>שם העסק</h4>
+        <h4>שם העסק</h4>
+        <h4>שם העסק</h4>
+        <h4>שם העסק</h4>
+        <h4>שם העסק</h4>
+        <h4>שם העסק</h4>
+        <h4>שם העסק</h4>
+        <h4>שם העסק</h4>
+        <h4>העלאת לוגו</h4>
+        <h4>העלאת תמונת רקע</h4>
+      </Card>
       <h3>שעות פתיחה</h3>
       <Table striped>
         <thead>
@@ -208,13 +219,13 @@ function BusinessSetting() {
             <td>
               <TimePicker
                 time={thursday.closing}
-                handleTimeChange={handleThursdayOpen}
+                handleTimeChange={handleThursdayClose}
               />
             </td>
             <td>
               <TimePicker
                 time={thursday.opening}
-                handleTimeChange={handleThursdayClose}
+                handleTimeChange={handleThursdayOpen}
               />
             </td>
             <td>
