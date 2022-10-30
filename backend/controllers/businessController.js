@@ -38,4 +38,18 @@ const updateUserWorkingDays = asyncHandler(async (req, res) => {
   }
 });
 
-export { getUserBusinessById, updateUserWorkingDays };
+// @desc update user business name
+// @route PUT /api/business/:id/business
+// @access Private/Admin
+const updateBusinessName = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("business");
+
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw Error("User not found");
+  }
+});
+
+export { getUserBusinessById, updateUserWorkingDays, updateBusinessName };

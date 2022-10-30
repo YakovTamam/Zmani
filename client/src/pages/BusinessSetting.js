@@ -8,6 +8,8 @@ import {
   getBusinessWorkingDays,
   updateBusinessBackground,
   updateBusinessLogo,
+  updateBusinessName,
+  updateBusinessSlogan,
   updateBusinessWorkingDays,
 } from "../actions/businessAction";
 import { UPDATE_BUSINESS_LOGO_SUCCESS } from "../constants/businessConstant";
@@ -78,10 +80,12 @@ function BusinessSetting() {
 
   const handleBusinessName = e => {
     setBusinessName(e.target.value);
+    dispatch(updateBusinessName(e.target.value));
   };
 
   const handleBusinessSlogan = e => {
     setBusinessSlogan(e.target.value);
+    dispatch(updateBusinessSlogan(e.target.value));
   };
 
   const con = e => {

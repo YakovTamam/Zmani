@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import "./MyPage.css";
 
 const MyPage = () => {
+  const business = useSelector(state => state.business);
+
+  const { businessName, slogan } = business;
+
   return (
     <div>
       <div
@@ -63,13 +68,13 @@ const MyPage = () => {
           textAlign: "center",
           marginTop: "55px",
         }}>
-        GENTELMEN
+        {businessName}
       </h2>
       <div
         style={{
           textAlign: "center",
         }}>
-        !המספרה הכי טובה בעיר
+        {slogan}
       </div>
       <div className='opening-houres'>
         <h4
