@@ -23,7 +23,13 @@ const BusinessFromStorage = localStorage.getItem("business")
 
 const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
-  business: { workingDays: BusinessFromStorage },
+  business: {
+    workingDays: BusinessFromStorage.workingDays,
+    businessName: BusinessFromStorage.businessName,
+    backgroundImage: BusinessFromStorage.backgroundImage,
+    logoImage: BusinessFromStorage.logoImage,
+    slogan: BusinessFromStorage.slogan,
+  },
 };
 
 const middleware = [thunk];

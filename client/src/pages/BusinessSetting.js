@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import TimePicker from "../components/TimePicker";
 import "./BusinessSetting.css";
 import { Table, Form, Button } from "react-bootstrap";
@@ -16,7 +17,8 @@ function BusinessSetting() {
 
   const business = useSelector(state => state.business);
   const { workingDays } = business;
-
+  const [image, setImage] = useState("");
+  const [uploading, setUploading] = useState(false);
   const [businessName, setBusinessName] = useState("zmani");
   const [businessSlogan, setBusinessSlogan] = useState("save zmani");
   const [sunday, setSunday] = useState(workingDays.sunday);
@@ -91,6 +93,29 @@ function BusinessSetting() {
     }
   }, [dispatch, workingDays]);
 
+  const uploadFileHandler = async e => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const { data } = await axios.post("/api/uploads", formData, config);
+
+      setImage(data);
+      setUploading(false);
+    } catch (error) {
+      console.error(error);
+      setUploading(false);
+    }
+  };
+
   return (
     <div>
       <h1>הגדרת העסק</h1>
@@ -110,7 +135,11 @@ function BusinessSetting() {
           לחץ
         </Button>
         <h6>העלאת תמונת רקע</h6>
-        <Button className='btn btn-sm'>לחץ</Button>
+        <Button type='file' className='btn btn-sm'>
+          לחץ
+        </Button>
+        <input type='file' id='myFile' className='filename'></input>
+        <input type='submit'></input>
       </div>
       <h3>שעות פתיחה</h3>
       <Table striped>
