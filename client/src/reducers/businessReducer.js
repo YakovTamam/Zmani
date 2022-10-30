@@ -3,6 +3,8 @@ import {
   GET_BUSINESS_WORKING_DAYS_REQUEST,
   GET_BUSINESS_WORKING_DAYS_RESET,
   GET_BUSINESS_WORKING_DAYS_SUCCESS,
+  UPDATE_BUSINESS_BACKGROUND_SUCCESS,
+  UPDATE_BUSINESS_LOGO_SUCCESS,
   UPDATE_BUSINESS_WORKING_DAYS_FAIL,
   UPDATE_BUSINESS_WORKING_DAYS_REQUEST,
   UPDATE_BUSINESS_WORKING_DAYS_SUCCESS,
@@ -23,6 +25,10 @@ export const businessReducer = (state = {}, action) => {
       };
     case UPDATE_BUSINESS_WORKING_DAYS_SUCCESS:
       return { loading: false, success: true, workingDays: action.payload };
+    case UPDATE_BUSINESS_LOGO_SUCCESS:
+      return { ...state, logoImage: action.payload };
+    case UPDATE_BUSINESS_BACKGROUND_SUCCESS:
+      return { ...state, backgroundImage: action.payload };
     case GET_BUSINESS_WORKING_DAYS_FAIL:
       return { loading: false, error: action.payload };
     case GET_BUSINESS_WORKING_DAYS_RESET:

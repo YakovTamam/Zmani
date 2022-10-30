@@ -6,8 +6,11 @@ import { Table, Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getBusinessWorkingDays,
+  updateBusinessBackground,
+  updateBusinessLogo,
   updateBusinessWorkingDays,
 } from "../actions/businessAction";
+import { UPDATE_BUSINESS_LOGO_SUCCESS } from "../constants/businessConstant";
 
 function BusinessSetting() {
   const dispatch = useDispatch();
@@ -17,7 +20,8 @@ function BusinessSetting() {
 
   const business = useSelector(state => state.business);
   const { workingDays } = business;
-  const [image, setImage] = useState("");
+  const [logoImage, setLogoImage] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState("");
   const [uploading, setUploading] = useState(false);
   const [businessName, setBusinessName] = useState("zmani");
   const [businessSlogan, setBusinessSlogan] = useState("save zmani");
@@ -72,19 +76,28 @@ function BusinessSetting() {
     setSaturday({ ...saturday, closing: val });
   }
 
+  const handleBusinessName = e => {
+    setBusinessName(e.target.value);
+  };
+
+  const handleBusinessSlogan = e => {
+    setBusinessSlogan(e.target.value);
+  };
+
   const con = e => {
-    dispatch(
-      updateBusinessWorkingDays({
-        sunday,
-        monday,
-        tuesday,
-        wednesday,
-        thursday,
-        friday,
-        saturday,
-      })
-    );
-    console.log(workingDays);
+    // dispatch(
+    //   updateBusinessWorkingDays({
+    //     sunday,
+    //     monday,
+    //     tuesday,
+    //     wednesday,
+    //     thursday,
+    //     friday,
+    //     saturday,
+    //   })
+    // );
+    // console.log(backgroundImage);
+    console.log(businessSlogan);
   };
 
   useEffect(() => {
@@ -107,8 +120,14 @@ function BusinessSetting() {
       };
 
       const { data } = await axios.post("/api/uploads", formData, config);
-
-      setImage(data);
+      if (e.target.id === "logoImage") {
+        console.log("Uploading");
+        setLogoImage(data);
+        dispatch(updateBusinessLogo(data));
+      } else {
+        setBackgroundImage(data);
+        dispatch(updateBusinessBackground(data));
+      }
       setUploading(false);
     } catch (error) {
       console.error(error);
@@ -124,22 +143,27 @@ function BusinessSetting() {
         <input
           type='text'
           placeholder={businessName}
-          style={{ marginBottom: "20px" }}></input>
+          style={{ marginBottom: "20px" }}
+          onChange={handleBusinessName}></input>
         <h6>סלוגן</h6>
         <input
           type='text'
           placeholder={businessSlogan}
-          style={{ marginBottom: "20px" }}></input>
+          style={{ marginBottom: "20px" }}
+          onChange={handleBusinessSlogan}></input>
         <h6>העלאת לוגו</h6>
-        <Button className='btn btn-sm' style={{ marginBottom: "20px" }}>
-          לחץ
-        </Button>
+        <input
+          type='file'
+          id='logoImage'
+          className='filename'
+          onChange={uploadFileHandler}
+        />
         <h6>העלאת תמונת רקע</h6>
-        <Button type='file' className='btn btn-sm'>
-          לחץ
-        </Button>
-        <input type='file' id='myFile' className='filename'></input>
-        <input type='submit'></input>
+        <input
+          type='file'
+          id='backgroundImage'
+          className='filename'
+          onChange={uploadFileHandler}></input>
       </div>
       <h3>שעות פתיחה</h3>
       <Table striped>
