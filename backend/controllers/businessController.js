@@ -42,14 +42,35 @@ const updateUserWorkingDays = asyncHandler(async (req, res) => {
 // @route PUT /api/business/:id/business
 // @access Private/Admin
 const updateBusinessName = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id).select("business");
-
-  if (user) {
-    res.json(user);
-  } else {
+  const user = await User.findById(req.user._id);
+  try {
+    user.business.businessName = req.body.name;
+    await user.save();
+    res.json("The new name is: " + user.business.businessName);
+  } catch (error) {
     res.status(404);
-    throw Error("User not found");
+    throw Error(error);
   }
 });
 
-export { getUserBusinessById, updateUserWorkingDays, updateBusinessName };
+// @desc update user business name
+// @route PUT /api/business/:id/business
+// @access Private/Admin
+const updateBusinessSlogan = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  try {
+    user.business.slogan = req.body.slogan;
+    await user.save();
+    res.json("The new slogan is: " + user.business.businessSlogan);
+  } catch (error) {
+    res.status(404);
+    throw Error(error);
+  }
+});
+
+export {
+  getUserBusinessById,
+  updateUserWorkingDays,
+  updateBusinessName,
+  updateBusinessSlogan,
+};

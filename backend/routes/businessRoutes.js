@@ -4,13 +4,14 @@ import {
   getUserBusinessById,
   updateUserWorkingDays,
   updateBusinessName,
+  updateBusinessSlogan,
 } from "../controllers/businessController.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
 
+router.put("/updateBusinessName", protect, updateBusinessName);
+router.route("/updateBusinessSlogan").put(protect, updateBusinessSlogan);
 router
   .route("/:id")
   .get(protect, getUserBusinessById)
   .put(protect, updateUserWorkingDays);
-router.route("updateBusinessName").put(protect, updateBusinessName);
-// router.route("updateBusinessSlogan").put(protect, update);
 export default router;

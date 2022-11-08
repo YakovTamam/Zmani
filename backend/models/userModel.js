@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema(
       },
       slogan: {
         type: String,
-        required: true,
+        required: false,
         default: "save zmani",
       },
       workingDays: {

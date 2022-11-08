@@ -5,8 +5,7 @@ import "./MyPage.css";
 
 const MyPage = () => {
   const business = useSelector(state => state.business);
-
-  const { businessName, slogan } = business;
+  const { businessName, slogan, logoImage, backgroundImage } = business;
 
   return (
     <div>
@@ -17,9 +16,7 @@ const MyPage = () => {
           justifyContent: "center",
         }}>
         <img
-          src={
-            "https://cdn.pixabay.com/photo/2021/11/15/11/00/barber-shop-6797761_960_720.jpg"
-          }
+          src={backgroundImage}
           alt='backround'
           style={{ width: "398px", height: "265.33px" }}
         />
@@ -37,9 +34,7 @@ const MyPage = () => {
             marginTop: "205.33px",
           }}>
           <img
-            src={
-              "https://img.freepik.com/premium-vector/vintage-barbershop-logo-template_441059-26.jpg?w=740"
-            }
+            src={logoImage}
             alt='logo'
             style={{
               width: "100px",

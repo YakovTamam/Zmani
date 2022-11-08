@@ -1,5 +1,4 @@
 import axios from "axios";
-import { STATES } from "mongoose";
 import {
   GET_BUSINESS_WORKING_DAYS_FAIL,
   GET_BUSINESS_WORKING_DAYS_REQUEST,
@@ -65,6 +64,7 @@ export const updateBusinessWorkingDays =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
+      console.log(workingDays);
 
       const { data } = await axios.put(
         `/api/business/${userInfo._id}`,
@@ -73,7 +73,6 @@ export const updateBusinessWorkingDays =
       );
 
       dispatch({ type: UPDATE_BUSINESS_WORKING_DAYS_SUCCESS, payload: data });
-      localStorage.setItem("business", JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: UPDATE_BUSINESS_WORKING_DAYS_FAIL,
@@ -88,6 +87,23 @@ export const updateBusinessWorkingDays =
 export const updateBusinessName = name => async (dispatch, getState) => {
   try {
     dispatch({ type: UPDATE_BUSINESS_NAME_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    console.log(name);
+    const { data } = await axios.put(
+      "/api/business/updateBusinessName",
+      { name },
+      config
+    );
 
     dispatch({ type: UPDATE_BUSINESS_NAME_SUCCESS, payload: name });
   } catch (error) {
@@ -104,7 +120,18 @@ export const updateBusinessName = name => async (dispatch, getState) => {
 export const updateBusinessSlogan = slogan => async (dispatch, getState) => {
   try {
     dispatch({ type: UPDATE_BUSINESS_SLOGAN_REQUEST });
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    console.log(slogan);
+    await axios.put(`/api/business/updateBusinessSlogan`, { slogan }, config);
     dispatch({ type: UPDATE_BUSINESS_SLOGAN_SUCCESS, payload: slogan });
   } catch (error) {
     dispatch({

@@ -5,7 +5,11 @@ import {
   GET_BUSINESS_WORKING_DAYS_SUCCESS,
   UPDATE_BUSINESS_BACKGROUND_SUCCESS,
   UPDATE_BUSINESS_LOGO_SUCCESS,
+  UPDATE_BUSINESS_NAME_FAIL,
+  UPDATE_BUSINESS_NAME_REQUEST,
   UPDATE_BUSINESS_NAME_SUCCESS,
+  UPDATE_BUSINESS_SLOGAN_FAIL,
+  UPDATE_BUSINESS_SLOGAN_REQUEST,
   UPDATE_BUSINESS_SLOGAN_SUCCESS,
   UPDATE_BUSINESS_WORKING_DAYS_FAIL,
   UPDATE_BUSINESS_WORKING_DAYS_REQUEST,
@@ -31,10 +35,18 @@ export const businessReducer = (state = {}, action) => {
       return { ...state, logoImage: action.payload };
     case UPDATE_BUSINESS_BACKGROUND_SUCCESS:
       return { ...state, backgroundImage: action.payload };
+    case UPDATE_BUSINESS_NAME_REQUEST:
+      return { ...state, loading: true };
     case UPDATE_BUSINESS_NAME_SUCCESS:
-      return { ...state, businessName: action.payload };
+      return { ...state, loading: false, businessName: action.payload };
+    case UPDATE_BUSINESS_NAME_FAIL:
+      return { ...state, loading: false, error: action.payload };
+    case UPDATE_BUSINESS_SLOGAN_REQUEST:
+      return { ...state, loading: true };
     case UPDATE_BUSINESS_SLOGAN_SUCCESS:
       return { ...state, slogan: action.payload };
+    case UPDATE_BUSINESS_SLOGAN_FAIL:
+      return { ...state, loading: false, error: action.payload };
     case GET_BUSINESS_WORKING_DAYS_FAIL:
       return { loading: false, error: action.payload };
     case GET_BUSINESS_WORKING_DAYS_RESET:

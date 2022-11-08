@@ -21,12 +21,14 @@ function BusinessSetting() {
   const { userInfo } = userLogin;
 
   const business = useSelector(state => state.business);
-  const { workingDays } = business;
-  const [logoImage, setLogoImage] = useState("");
-  const [backgroundImage, setBackgroundImage] = useState("");
+  const { workingDays, businessName, slogan, backgroundImage, logoImage } =
+    business;
+
+  const [logoImg, setLogoImage] = useState(logoImage);
+  const [backgroundImg, setBackgroundImage] = useState(backgroundImage);
   const [uploading, setUploading] = useState(false);
-  const [businessName, setBusinessName] = useState("zmani");
-  const [businessSlogan, setBusinessSlogan] = useState("save zmani");
+  const [name, setName] = useState(businessName);
+  const [businessSlogan, setBusinessSlogan] = useState(slogan);
   const [sunday, setSunday] = useState(workingDays.sunday);
   const [monday, setMonday] = useState(workingDays.monday);
   const [tuesday, setTuesday] = useState(workingDays.tuesday);
@@ -79,13 +81,11 @@ function BusinessSetting() {
   }
 
   const handleBusinessName = e => {
-    setBusinessName(e.target.value);
-    dispatch(updateBusinessName(e.target.value));
+    setName(e.target.value);
   };
 
   const handleBusinessSlogan = e => {
     setBusinessSlogan(e.target.value);
-    dispatch(updateBusinessSlogan(e.target.value));
   };
 
   const con = e => {
@@ -100,8 +100,10 @@ function BusinessSetting() {
     //     saturday,
     //   })
     // );
-    // console.log(backgroundImage);
-    console.log(businessSlogan);
+    console.log(backgroundImg);
+    console.log(logoImg);
+    // dispatch(updateBusinessSlogan(businessSlogan));
+    // dispatch(updateBusinessName(name));
   };
 
   useEffect(() => {
@@ -125,7 +127,6 @@ function BusinessSetting() {
 
       const { data } = await axios.post("/api/uploads", formData, config);
       if (e.target.id === "logoImage") {
-        console.log("Uploading");
         setLogoImage(data);
         dispatch(updateBusinessLogo(data));
       } else {
