@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader.js";
 import FormContainer from "../components/FormContainer.js";
-import { login } from "../actions/userActions.js";
+import { login } from "../actions/businessAction.js";
 
 const LoginPage = () => {
   const location = useLocation();
@@ -17,16 +17,16 @@ const LoginPage = () => {
 
   const dispatch = useDispatch();
 
-  const userLogin = useSelector(state => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const businessLogin = useSelector(state => state.business);
+  const { loading, error, token } = businessLogin;
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
-    if (userInfo) {
+    if (token) {
       navigate(redirect);
     }
-  }, [navigate, userInfo, redirect]);
+  }, [navigate, token, redirect]);
 
   const submitHandler = e => {
     e.preventDefault();

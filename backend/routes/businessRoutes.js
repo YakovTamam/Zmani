@@ -1,17 +1,21 @@
 import express from "express";
 const router = express.Router();
 import {
-  getUserBusinessById,
-  updateUserWorkingDays,
-  updateBusinessName,
-  updateBusinessSlogan,
+  createBusinessByPhone,
+  createBusinessByEmail,
+  loginBusinessByEmail,
+  getBusinessById,
+  updateBusinessWorkHours,
+  addCares,
+  getCares,
 } from "../controllers/businessController.js";
-import { protect, admin } from "../middleware/authMiddleware.js";
+import { protect, admin, business } from "../middleware/authMiddleware.js";
 
-router.put("/updateBusinessName", protect, updateBusinessName);
-router.route("/updateBusinessSlogan").put(protect, updateBusinessSlogan);
-router
-  .route("/:id")
-  .get(protect, getUserBusinessById)
-  .put(protect, updateUserWorkingDays);
+router.route("/phone").post(createBusinessByPhone);
+router.route("/email").post(createBusinessByEmail);
+router.route("/emailauth").post(loginBusinessByEmail);
+router.route("/cares/:id").post(protect, business, addCares).get(getCares); //.put(updateCare).delete(deleteCare);
+router.route("/:id/update").put(protect, business, updateBusinessWorkHours);
+router.route("/:id").get(getBusinessById);
+
 export default router;

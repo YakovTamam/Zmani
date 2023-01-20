@@ -1,35 +1,18 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { userRegisterReducer, userLoginReducer } from "./reducers/userReducers";
-import {
-  businessReducer,
-  workingDaysReducer,
-} from "./reducers/businessReducer";
+import { businessLoginReducer } from "./reducers/businessReducer";
 
 const reducer = combineReducers({
-  userRegister: userRegisterReducer,
-  userLogin: userLoginReducer,
-  business: businessReducer,
+  business: businessLoginReducer,
 });
-
-const userInfoFromStorage = localStorage.getItem("userInfo")
-  ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
 
 const BusinessFromStorage = localStorage.getItem("business")
   ? JSON.parse(localStorage.getItem("business"))
   : null;
 
 const initialState = {
-  userLogin: { userInfo: userInfoFromStorage },
-  business: {
-    workingDays: BusinessFromStorage.workingDays,
-    businessName: BusinessFromStorage.businessName,
-    backgroundImage: BusinessFromStorage.backgroundImage,
-    logoImage: BusinessFromStorage.logoImage,
-    slogan: BusinessFromStorage.slogan,
-  },
+  business: { BusinessFromStorage },
 };
 
 const middleware = [thunk];

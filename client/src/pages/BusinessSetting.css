@@ -1,10 +1,24 @@
+.business{
+    display: flex;
+    flex-direction: column;;
+}
+
+h1{
+    text-align: right
+}
+h3{
+    text-align: right
+}
+
 h5{
     width: 130px;
     margin-right: 10px;
+    text-align: right
 }
 
 h6{
     margin-top: 20px;
+    text-align: right
 }
 
 input{
@@ -17,6 +31,7 @@ input{
     align-items: end;
     padding: 10px;
     height: 400px;
+    
 }
 
 
@@ -38,4 +53,7 @@ input{
     display: flex;
     width: 100%;
 
+}
+.updateButton{
+    align-self: end;
 }

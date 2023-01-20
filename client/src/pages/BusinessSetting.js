@@ -4,156 +4,40 @@ import TimePicker from "../components/TimePicker";
 import "./BusinessSetting.css";
 import { Table, Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getBusinessWorkingDays,
-  updateBusinessBackground,
-  updateBusinessLogo,
-  updateBusinessName,
-  updateBusinessSlogan,
-  updateBusinessWorkingDays,
-} from "../actions/businessAction";
+import {} from "../actions/businessAction";
 import { UPDATE_BUSINESS_LOGO_SUCCESS } from "../constants/businessConstant";
 
 function BusinessSetting() {
-  const dispatch = useDispatch();
-
-  const userLogin = useSelector(state => state.userLogin);
-  const { userInfo } = userLogin;
-
   const business = useSelector(state => state.business);
-  const { workingDays, businessName, slogan, backgroundImage, logoImage } =
-    business;
+  const { loading, error, token, info } = business;
 
-  const [logoImg, setLogoImage] = useState(logoImage);
-  const [backgroundImg, setBackgroundImage] = useState(backgroundImage);
-  const [uploading, setUploading] = useState(false);
-  const [name, setName] = useState(businessName);
-  const [businessSlogan, setBusinessSlogan] = useState(slogan);
-  const [sunday, setSunday] = useState(workingDays.sunday);
-  const [monday, setMonday] = useState(workingDays.monday);
-  const [tuesday, setTuesday] = useState(workingDays.tuesday);
-  const [thursday, setThursday] = useState(workingDays.thursday);
-  const [wednesday, setWednesday] = useState(workingDays.wednesday);
-  const [friday, setFriday] = useState(workingDays.friday);
-  const [saturday, setSaturday] = useState(workingDays.saturday);
-
-  function handleSundayOpen(val) {
-    setSunday({ ...sunday, opening: val });
-  }
-  function handleSundayClose(val) {
-    setSunday({ ...sunday, closing: val });
-  }
-  function handleMondayOpen(val) {
-    setMonday({ ...monday, opening: val });
-  }
-  function handleMondayClose(val) {
-    setMonday({ ...monday, closing: val });
-  }
-  function handleTuesdayOpen(val) {
-    setTuesday({ ...tuesday, opening: val });
-  }
-  function handleTuesdayClose(val) {
-    setTuesday({ ...tuesday, closing: val });
-  }
-  function handleWednesdayOpen(val) {
-    setWednesday({ ...wednesday, opening: val });
-  }
-  function handleWednesdayClose(val) {
-    setWednesday({ ...wednesday, closing: val });
-  }
-  function handleThursdayOpen(val) {
-    setThursday({ ...thursday, opening: val });
-  }
-  function handleThursdayClose(val) {
-    setThursday({ ...thursday, closing: val });
-  }
-  function handleFridayOpen(val) {
-    setFriday({ ...friday, opening: val });
-  }
-  function handleFridayClose(val) {
-    setFriday({ ...friday, closing: val });
-  }
-  function handleSaturdayOpen(val) {
-    setSaturday({ ...saturday, opening: val });
-  }
-  function handleSaturdayClose(val) {
-    setSaturday({ ...saturday, closing: val });
-  }
-
+  //TODO
   const handleBusinessName = e => {
-    setName(e.target.value);
+    console.log("handleBusinessName");
   };
 
   const handleBusinessSlogan = e => {
-    setBusinessSlogan(e.target.value);
+    console.log("handleBusinessSlogan");
   };
 
-  const con = e => {
-    // dispatch(
-    //   updateBusinessWorkingDays({
-    //     sunday,
-    //     monday,
-    //     tuesday,
-    //     wednesday,
-    //     thursday,
-    //     friday,
-    //     saturday,
-    //   })
-    // );
-    console.log(backgroundImg);
-    console.log(logoImg);
-    // dispatch(updateBusinessSlogan(businessSlogan));
-    // dispatch(updateBusinessName(name));
-  };
-
-  useEffect(() => {
-    if (!workingDays) {
-      dispatch(getBusinessWorkingDays());
-    }
-  }, [dispatch, workingDays]);
-
-  const uploadFileHandler = async e => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-    setUploading(true);
-
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-
-      const { data } = await axios.post("/api/uploads", formData, config);
-      if (e.target.id === "logoImage") {
-        setLogoImage(data);
-        dispatch(updateBusinessLogo(data));
-      } else {
-        setBackgroundImage(data);
-        dispatch(updateBusinessBackground(data));
-      }
-      setUploading(false);
-    } catch (error) {
-      console.error(error);
-      setUploading(false);
-    }
+  const uploadFileHandler = e => {
+    console.log("uploadFileHandler");
   };
 
   return (
-    <div>
+    <div className='business'>
       <h1>הגדרת העסק</h1>
       <div className='card'>
         <h6>שם העסק</h6>
         <input
           type='text'
-          placeholder={businessName}
+          placeholder={info.businessName}
           style={{ marginBottom: "20px" }}
           onChange={handleBusinessName}></input>
         <h6>סלוגן</h6>
         <input
           type='text'
-          placeholder={businessSlogan}
+          placeholder={info.businessSlogan}
           style={{ marginBottom: "20px" }}
           onChange={handleBusinessSlogan}></input>
         <h6>העלאת לוגו</h6>
@@ -181,32 +65,32 @@ function BusinessSetting() {
           </tr>
         </thead>
         <tbody>
-          <tr key={sunday.name}>
+          <tr key={info.workhours[0].name}>
             <td>
               <TimePicker
-                time={sunday.closing}
-                handleTimeChange={handleSundayClose}
+                time={info.workhours[0].name}
+                // handleTimeChange={handleSundayClose}
               />
             </td>
             <td>
               <TimePicker
-                time={sunday.opening}
-                handleTimeChange={handleSundayOpen}
+                time={info.workhours[0].name}
+                // handleTimeChange={handleSundayOpen}
               />
             </td>
             <td>
               <Form.Check
                 type='switch'
                 id='sunday'
-                checked={sunday.isOpen}
-                onChange={e =>
-                  setSunday({ ...sunday, isOpen: e.target.checked })
-                }
+                // checked={sunday.isOpen}
+                // onChange={e =>
+                //   setSunday({ ...sunday, isOpen: e.target.checked })
+                //}
               />
             </td>
-            <td>{sunday.name}</td>
+            <td>{info.workhours[0].name}</td>
           </tr>
-          <tr key={monday.name}>
+          {/* <tr key={monday.name}>
             <td>
               <TimePicker
                 time={monday.closing}
@@ -355,10 +239,10 @@ function BusinessSetting() {
               />
             </td>
             <td>{saturday.name}</td>
-          </tr>
+          </tr> */}
         </tbody>
       </Table>
-      <button onClick={con}>עדכן</button>
+      <Button className='updateButton'>עדכן</Button>
     </div>
   );
 }

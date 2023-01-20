@@ -10,8 +10,8 @@ import { logout } from "../actions/userActions";
 const Header = () => {
   const dispatch = useDispatch();
 
-  const userLogin = useSelector(state => state.userLogin);
-  const { userInfo } = userLogin;
+  const business = useSelector(state => state.business);
+  const { info } = business;
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -26,9 +26,9 @@ const Header = () => {
             Zmani
           </Navbar.Brand>
         </LinkContainer>
-        {userInfo ? (
+        {business ? (
           <NavDropdown
-            title={userInfo.name}
+            title={info.businessName}
             id='basic-nav-dropdown'
             align='end'>
             <LinkContainer to='/mypage'>

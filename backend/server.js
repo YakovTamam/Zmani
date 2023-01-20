@@ -7,9 +7,7 @@ import path from "path";
 import morgan from "morgan";
 
 // import routes
-import productRoutes from "./routes/productsRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import orderRoutes from "./routes/orderRoutes.js";
 import uploadsRoutes from "./routes/uploadsRoutes.js";
 import businessRoutes from "./routes/businessRoutes.js";
 
@@ -29,10 +27,6 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 // using routes
-app.use("/api/products", productRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/orders", orderRoutes);
-app.use("/api/uploads", uploadsRoutes);
 app.use("/api/business", businessRoutes);
 
 app.get("/api/config/paypal", (req, res) => {

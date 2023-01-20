@@ -1,75 +1,25 @@
 import {
-  GET_BUSINESS_WORKING_DAYS_FAIL,
-  GET_BUSINESS_WORKING_DAYS_REQUEST,
-  GET_BUSINESS_WORKING_DAYS_RESET,
-  GET_BUSINESS_WORKING_DAYS_SUCCESS,
-  UPDATE_BUSINESS_BACKGROUND_SUCCESS,
-  UPDATE_BUSINESS_LOGO_SUCCESS,
-  UPDATE_BUSINESS_NAME_FAIL,
-  UPDATE_BUSINESS_NAME_REQUEST,
-  UPDATE_BUSINESS_NAME_SUCCESS,
-  UPDATE_BUSINESS_SLOGAN_FAIL,
-  UPDATE_BUSINESS_SLOGAN_REQUEST,
-  UPDATE_BUSINESS_SLOGAN_SUCCESS,
-  UPDATE_BUSINESS_WORKING_DAYS_FAIL,
-  UPDATE_BUSINESS_WORKING_DAYS_REQUEST,
-  UPDATE_BUSINESS_WORKING_DAYS_SUCCESS,
+  BUSINESS_LOGIN_REQUEST,
+  BUSINESS_LOGIN_SUCCESS,
+  BUSINESS_LOGIN_FAIL,
+  BUSINESS_LOGOUT,
 } from "../constants/businessConstant";
 
-export const businessReducer = (state = {}, action) => {
+export const businessLoginReducer = (state = {}, action) => {
   switch (action.type) {
-    case GET_BUSINESS_WORKING_DAYS_REQUEST:
+    case BUSINESS_LOGIN_REQUEST:
       return { loading: true };
-    case GET_BUSINESS_WORKING_DAYS_SUCCESS:
+    case BUSINESS_LOGIN_SUCCESS:
       return {
+        token: action.payload.token,
+        info: action.payload,
         loading: false,
-        workingDays: action.payload.workingDays,
-        businessName: action.payload.businessName,
-        slogan: action.payload.slogan,
-        logoImage: action.payload.logoImage,
-        backgroundImage: action.payload.backgroundImage,
       };
-    case UPDATE_BUSINESS_WORKING_DAYS_SUCCESS:
-      return { loading: false, success: true, workingDays: action.payload };
-    case UPDATE_BUSINESS_LOGO_SUCCESS:
-      return { ...state, logoImage: action.payload };
-    case UPDATE_BUSINESS_BACKGROUND_SUCCESS:
-      return { ...state, backgroundImage: action.payload };
-    case UPDATE_BUSINESS_NAME_REQUEST:
-      return { ...state, loading: true };
-    case UPDATE_BUSINESS_NAME_SUCCESS:
-      return { ...state, loading: false, businessName: action.payload };
-    case UPDATE_BUSINESS_NAME_FAIL:
-      return { ...state, loading: false, error: action.payload };
-    case UPDATE_BUSINESS_SLOGAN_REQUEST:
-      return { ...state, loading: true };
-    case UPDATE_BUSINESS_SLOGAN_SUCCESS:
-      return { ...state, slogan: action.payload };
-    case UPDATE_BUSINESS_SLOGAN_FAIL:
-      return { ...state, loading: false, error: action.payload };
-    case GET_BUSINESS_WORKING_DAYS_FAIL:
-      return { loading: false, error: action.payload };
-    case GET_BUSINESS_WORKING_DAYS_RESET:
+    case BUSINESS_LOGIN_FAIL:
+      return { error: action.payload, loading: false };
+    case BUSINESS_LOGOUT:
+      return { error: action.payload, loading: false };
+    default:
       return {};
-    default:
-      return state;
-  }
-};
-
-export const workingDaysReducer = (state = {}, action) => {
-  switch (action.type) {
-    case UPDATE_BUSINESS_WORKING_DAYS_REQUEST:
-      return { loading: true };
-    case UPDATE_BUSINESS_WORKING_DAYS_SUCCESS:
-      return {
-        loading: false,
-        success: true,
-        workingDays: action.payload.workingDays,
-        businessName: action.payload.businessName,
-      };
-    case UPDATE_BUSINESS_WORKING_DAYS_FAIL:
-      return { loading: false, error: action.payload };
-    default:
-      return state;
   }
 };
